@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\domis\\OneDrive\\Documents\\TeamWebAPI\\TeamWebAPI\\TeamWebAPI.csproj": {}
+    "C:\\Users\\domis\\OneDrive\\Documents\\GitHub\\TeamWebAPI\\TeamWebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\domis\\OneDrive\\Documents\\TeamWebAPI\\TeamWebAPI\\TeamWebAPI.csproj": {
+    "C:\\Users\\domis\\OneDrive\\Documents\\GitHub\\TeamWebAPI\\TeamWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\domis\\OneDrive\\Documents\\TeamWebAPI\\TeamWebAPI\\TeamWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\domis\\OneDrive\\Documents\\GitHub\\TeamWebAPI\\TeamWebAPI.csproj",
         "projectName": "TeamWebAPI",
-        "projectPath": "C:\\Users\\domis\\OneDrive\\Documents\\TeamWebAPI\\TeamWebAPI\\TeamWebAPI.csproj",
+        "projectPath": "C:\\Users\\domis\\OneDrive\\Documents\\GitHub\\TeamWebAPI\\TeamWebAPI.csproj",
         "packagesPath": "C:\\Users\\domis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\domis\\OneDrive\\Documents\\TeamWebAPI\\TeamWebAPI\\obj\\",
+        "outputPath": "C:\\Users\\domis\\OneDrive\\Documents\\GitHub\\TeamWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,6 +51,14 @@
           "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[8.0.7, )"
             },
