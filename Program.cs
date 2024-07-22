@@ -9,6 +9,7 @@ builder.Services.AppDbContext<AppDbContext>(options => options.UseSqlServer(buil
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApiDocument();
 
 var app = builder.Build();
 
@@ -16,7 +17,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUi3();
+    app.UseOpenApi();
 }
 
 app.UseHttpsRedirection();
