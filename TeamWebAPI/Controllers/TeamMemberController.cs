@@ -41,23 +41,6 @@ namespace TeamWebAPI.Controllers
             return Ok(new List<TeamMember> { teamMember });
         }
 
-        // Gets a specified team member via ID
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TeamMember>> GetTeamMember(int id)
-        {
-            // Finds a team member by ID
-            var teamMember = await _context.TeamMembers.FindAsync(id);
-
-            // If the team member isn't found, returns 404 Not Found message.
-            if (teamMember == null)
-            {
-                return NotFound();
-            }
-
-            // Returns found team member.
-            return teamMember;
-        }
-
         // Creates a new team member.
         [HttpPost]
         public async Task<ActionResult<TeamMember>> PostTeamMember(TeamMember teamMember)
