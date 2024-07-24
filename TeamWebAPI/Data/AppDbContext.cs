@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore; // Imports the Entity Framework Core namespace.
+using TeamWebAPI.Models; // Imports namespace where models are defined.
 
 namespace TeamWebAPI.Data
 {
