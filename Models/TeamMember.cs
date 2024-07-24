@@ -1,7 +1,8 @@
-using System;
+using System; // Imports namespace to handle DateTime.
 
 namespace TeamWebAPI.Models
 {
+    // Defines the TeamMember class which represents a team member entity.
     public class TeamMember
     {
         public int Id { get; set; }
