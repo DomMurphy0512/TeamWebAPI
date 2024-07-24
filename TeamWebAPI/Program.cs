@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore; // Imports Entity Framework Core namespace.
 using TeamWebAPI.Data; // Imports namespace where data context is defined.
+using TeamWebAPI.Models; // Imports namespace where models are defined.
+using NSwag.AspNetCore; // Imports ASP.NET Core namespace.
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +23,7 @@ if (app.Environment.IsDevelopment())
     // Enables middleware to serve generated Swagger as a JSON endpoint.
     app.UseSwagger();
     // Enables middleware to serve Swagger UI.
-    app.UseSwaggerUi3();
+    app.UseSwaggerUi();
     // Enables middleware to serve OpenAPI documentation.
     app.UseOpenApi();
 }
