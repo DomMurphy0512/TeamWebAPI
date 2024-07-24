@@ -6,7 +6,7 @@ using NSwag.AspNetCore; // Imports ASP.NET Core namespace.
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container. Configures Entity Framework to use SQL Server with the connection string from configuration.
-builder.Services.AppDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 // Adds services to the container for controllers, API endpoints, and Swagger.
