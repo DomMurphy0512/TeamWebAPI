@@ -16,7 +16,6 @@ namespace TeamWebAPI.Controllers
             _context = context;
         }
 
-        // GET: api/TeamMember
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TeamMember>>> GetTeamMembers([FromQuery] int? id)
         {
@@ -35,7 +34,6 @@ namespace TeamWebAPI.Controllers
             return Ok(new List<TeamMember> { teamMember });
         }
 
-        // GET: api/TeamMember/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TeamMember>> GetTeamMember(int id)
         {
@@ -49,7 +47,6 @@ namespace TeamWebAPI.Controllers
             return teamMember;
         }
 
-        // POST: api/TeamMember
         [HttpPost]
         public async Task<ActionResult<TeamMember>> PostTeamMember(TeamMember teamMember)
         {
@@ -59,7 +56,6 @@ namespace TeamWebAPI.Controllers
             return CreatedAtAction("GetTeamMember", new { id = teamMember.Id }, teamMember);
         }
 
-        // PUT: api/TeamMember/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTeamMember(int id, TeamMember teamMember)
         {
@@ -89,7 +85,6 @@ namespace TeamWebAPI.Controllers
             return NoContent();
         }
 
-        // DELETE: api/TeamMember/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeamMember(int id)
         {
