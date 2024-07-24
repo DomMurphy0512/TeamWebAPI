@@ -1,49 +1,60 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TeamWebAPI.Data;
-using TeamWebAPI.Models;
+using Microsoft.AspNetCore.Mvc; // Imports the ASP.NET Core MVC namespace.
+using Microsoft.EntityFrameworkCore; // Imports the Entity Framework Core namespace.
+using TeamWebAPI.Data; // Includes namespace where the data context is defined.
+using TeamWebAPI.Models; // Includes namespace where the models are defined.
 
 namespace TeamWebAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Route("api/[controller]")] // Defines the route for this controller.
+    [ApiController] // Specifies that this is an API controller.
     public class TeamMemberController : ControllerBase
     {
+        // Declares a readonly field for the database context.
         private readonly AppDbContext _context;
 
+        // Constructor to initialize the database context via dependency injection.
         public TeamMemberController(AppDbContext context)
         {
             _context = context;
         }
 
+        // Gets a list of team members, with an optional parameter for an ID.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TeamMember>>> GetTeamMembers([FromQuery] int? id)
         {
+            // If no ID is given or the ID is 0, returns the first 5 team members.
             if (id == null || id == 0)
             {
                 return await _context.TeamMembers.Take(5).ToListAsync();
             }
 
+            // Finds a team member via a specified ID.
             var teamMember = await _context.TeamMembers.FindAsync(id);
 
+            // If the team member is not found, returns 404 Not Found error message.
             if (teamMember == null)
             {
                 return NotFound();
             }
 
+            // Returns the found team member in a list.
             return Ok(new List<TeamMember> { teamMember });
         }
 
+        // Gets a specified team member via ID
         [HttpGet("{id}")]
         public async Task<ActionResult<TeamMember>> GetTeamMember(int id)
         {
+            // Finds a team member by ID
             var teamMember = await _context.TeamMembers.FindAsync(id);
 
+            // If the team member isn't found, returns 404 Not Found message.
             if (teamMember == null)
             {
                 return NotFound();
             }
 
+            // Returns found team member.
             return teamMember;
         }
 
