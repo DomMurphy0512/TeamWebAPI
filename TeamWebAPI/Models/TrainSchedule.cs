@@ -6,10 +6,10 @@ namespace TeamWebAPI.Models
     {
         public int Id { get; set; }
 
-        public string  DepartureCity { get; set; }
+        public string  DepartureCity { get; set; } = string.Empty;
 
         public DateTime DepartureTime { get; set; }
-        public string DestinationCity { get; set; }
+        public string DestinationCity { get; set; } = string.Empty;
         public int TripLength { get; set; }
     }
 }
