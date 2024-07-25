@@ -14,5 +14,6 @@ namespace TeamWebAPI.Data
         // Defines a DbSet property for TeamMember entities, which maps to a database table.
         public DbSet<TeamMember> TeamMembers { get; set; }
         // Add other DbSets here
+        public DbSet<TrainSchedule> TrainSchedules { get; set;}
     }
 }
