@@ -3,55 +3,66 @@ using Microsoft.EntityFrameworkCore;
 using TeamWebAPI.Data;
 using TeamWebAPI.Models;
 
+
 namespace TeamWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TrainSchedule : ControllerBase
+    public class TrainScheduleController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public TrainSchedule(AppDbContext context)
+        public TrainScheduleController(AppDbContext context)
         {
             _context = context;
         }
 
+    //GET : api/TrainSchedule
+    //Retrieve train schedule(s)
         [HttpGet]
-        public IActionResult Get(TrainSchedule){
-            
-        }
-       
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Schedule>> GetTrainSchedule(int id)
-        {
-            var TrainSchedule = await _context.TrainSchedule.FindAsync(id);
 
-            if (teamMember == null)
+        public async Task<ActionResult<IEnumerable<TrainSchedule>>> GetTrainSchedules([FromQuery] int? id)
+        {
+            //return last 4 records if no ID is provided
+            if (id == null || id == 0)
+            {
+                return await _context.TrainSchedules.Take(4).ToListAsync();
+            }
+            //return schedule by ID
+            var trainSchedule = await _context.TrainSchedules.FindAsync(id);
+
+            if (trainSchedule == null)
             {
                 return NotFound();
             }
+            //return schedules in a list
+            return Ok(new List<TrainSchedule> { trainSchedule });
 
-            return teamMember;
         }
 
+//Add new train route
         [HttpPost]
-        public async Task<ActionResult<TeamMember>> PostTrainSchedule(TeamMember teamMember)
+
+        public async Task<ActionResult<TrainSchedule>> PostTrainSchedule(TrainSchedule trainSchedule)
         {
-            _context.TrainSchedule.Add(teamMember);
+            _context.TrainSchedules.Add(trainSchedule);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTeamMember", new { id = teamMember.Id }, teamMember);
+            return CreatedAtAction("GetTrainSchedules", new { id = trainSchedule.Id }, trainSchedule);
         }
 
+//Update an existing train route by ID
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTeamMember(int id, TeamMember teamMember)
+
+       //IAction - defines HTTP status return type  
+        public async Task<IActionResult> PutTrainSchedule(int id, TrainSchedule trainSchedule)
         {
-            if (id != teamMember.Id)
+            if (id != trainSchedule.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(teamMember).State = EntityState.Modified;
+            _context.Entry(trainSchedule).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +70,7 @@ namespace TeamWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TeamMemberExists(id))
+                if (!TrainScheduleExists(id))
                 {
                     return NotFound();
                 }
@@ -71,25 +82,25 @@ namespace TeamWebAPI.Controllers
 
             return NoContent();
         }
-
+//Delete a record by ID
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTeamMember(int id)
+        public async Task<IActionResult> DeleteTrainSchedule(int id)
         {
-            var teamMember = await _context.TrainSchedule.FindAsync(id);
-            if (teamMember == null)
+            var trainSchedule = await _context.TrainSchedules.FindAsync(id);
+            if (trainSchedule == null)
             {
                 return NotFound();
             }
 
-            _context.TrainSchedule.Remove(teamMember);
+            _context.TrainSchedules.Remove(trainSchedule);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool TeamMemberExists(int id)
+        private bool TrainScheduleExists(int id)
         {
-            return _context.TrainSchedule.Any(e => e.Id == id);
+            return _context.TrainSchedules.Any(e => e.Id == id);
         }
     }
 }
