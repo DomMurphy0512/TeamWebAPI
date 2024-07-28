@@ -15,5 +15,13 @@ namespace TeamWebAPI.Data
         public DbSet<TeamMember> TeamMembers { get; set; }
         // Add other DbSets here
         public DbSet<TrainSchedule> TrainSchedules { get; set;}
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("DefaultConnection");
+            }
+        }
     }
 }
