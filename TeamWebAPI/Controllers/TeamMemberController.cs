@@ -41,6 +41,20 @@ namespace TeamWebAPI.Controllers
             return Ok(new List<TeamMember> { teamMember });
         }
 
+        // Gets a team member by ID.
+        [HttpGet("{id}", Name = "GetTeamMember")]
+        public async Task<ActionResult<TeamMember>> GetTeamMember(int id)
+        {
+            var teamMember = await _context.TeamMembers.FindAsync(id);
+
+            if (teamMember == null)
+            {
+                return NotFound();
+            }
+
+            return teamMember;
+        }
+
         // Creates a new team member.
         [HttpPost]
         public async Task<ActionResult<TeamMember>> PostTeamMember(TeamMember teamMember)
