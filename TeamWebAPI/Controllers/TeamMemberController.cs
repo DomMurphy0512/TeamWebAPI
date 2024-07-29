@@ -19,7 +19,7 @@ namespace TeamWebAPI.Controllers
         }
 
         // Gets a list of team members, with an optional parameter for an ID.
-        [HttpGet]
+        [HttpGet(Name = "GetTeamMember")]
         public async Task<ActionResult<IEnumerable<TeamMember>>> GetTeamMembers([FromQuery] int? id)
         {
             // If no ID is given or the ID is 0, returns the first 5 team members.
@@ -39,20 +39,6 @@ namespace TeamWebAPI.Controllers
 
             // Returns the found team member in a list.
             return Ok(new List<TeamMember> { teamMember });
-        }
-
-        // Gets a team member by ID.
-        [HttpGet("{id}", Name = "GetTeamMember")]
-        public async Task<ActionResult<TeamMember>> GetTeamMember(int id)
-        {
-            var teamMember = await _context.TeamMembers.FindAsync(id);
-
-            if (teamMember == null)
-            {
-                return NotFound();
-            }
-
-            return teamMember;
         }
 
         // Creates a new team member.
