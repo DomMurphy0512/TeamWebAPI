@@ -19,7 +19,7 @@ namespace TeamWebAPI.Controllers
         }
 
         // Gets a list of team members, with an optional parameter for an ID.
-        [HttpGet(Name = "GetTeamMember")]
+        [HttpGet(Name = "GetTeamMembers")]
         public async Task<ActionResult<IEnumerable<TeamMember>>> GetTeamMembers([FromQuery] int? id)
         {
             // If no ID is given or the ID is 0, returns the first 5 team members.
@@ -50,7 +50,7 @@ namespace TeamWebAPI.Controllers
             await _context.SaveChangesAsync();
 
             // Returns 201 Created response with the location of the new team member.
-            return CreatedAtAction("GetTeamMember", new { id = teamMember.Id }, teamMember);
+            return CreatedAtAction("GetTeamMembers", new { id = teamMember.Id }, teamMember);
         }
 
         // Updates an existing team member.
