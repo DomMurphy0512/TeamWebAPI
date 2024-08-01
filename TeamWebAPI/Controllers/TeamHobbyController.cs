@@ -16,14 +16,14 @@ namespace TeamWebAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Hobbies
+        // Get hobbie
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Hobby>>> GetHobbies()
         {
             return await _context.Hobbies.ToListAsync();
         }
 
-        // GET: api/Hobbies/5
+        // Get api hobie
         [HttpGet("{id}")]
         public async Task<ActionResult<Hobby>> GetHobby(int id)
         {
@@ -37,7 +37,7 @@ namespace TeamWebAPI.Controllers
             return hobby;
         }
 
-        // PUT: api/Hobbies/5
+        // Put hobbie
         [HttpPut("{id}")]
         public async Task<IActionResult> PutHobby(int id, Hobby hobby)
         {
@@ -67,7 +67,7 @@ namespace TeamWebAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Hobbies
+        // Post hobbies
         [HttpPost]
         public async Task<ActionResult<Hobby>> PostHobby(Hobby hobby)
         {
@@ -77,7 +77,7 @@ namespace TeamWebAPI.Controllers
             return CreatedAtAction(nameof(GetHobby), new { id = hobby.Id }, hobby);
         }
 
-        // DELETE: api/Hobbies/5
+        // Delete hobbies
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHobby(int id)
         {
