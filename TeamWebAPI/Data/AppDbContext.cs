@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore; // Imports the Entity Framework Core namespace.
+using TeamWebAPI.Controllers;
 using TeamWebAPI.Models; // Imports namespace where models are defined.
 
 namespace TeamWebAPI.Data
@@ -13,8 +14,14 @@ namespace TeamWebAPI.Data
 
         // Defines a DbSet property for TeamMember entities, which maps to a database table.
         public DbSet<TeamMember> TeamMembers { get; set; }
+
+        // Db set added for hobbies
+        public DbSet<TeamHobbiesController> TeamHobbiesController { get; set; }
+
         // Add other DbSets here
         public DbSet<TrainSchedule> TrainSchedules { get; set;}
+
+                public DbSet<BreakfastFood> BreakfastFood { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
