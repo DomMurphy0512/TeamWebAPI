@@ -57,6 +57,7 @@ namespace TeamWebAPI.Controllers
        //IAction - defines HTTP status return type  
         public async Task<IActionResult> PutTrainSchedule(int id, TrainSchedule trainSchedule)
         {
+            //Error message if the Id entered doesn't match a route
             if (id != trainSchedule.Id)
             {
                 return BadRequest();
